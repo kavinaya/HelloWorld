@@ -1,22 +1,17 @@
 version: 0.0
-os: linux
+os: windows
 files:
   - source: /
-    destination: /var/www/html/WordPress
+    destination: C:\inetpub\wwwroot
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
-      timeout: 300
-      runas: root
+    - location: scripts/before_install.bat
+      timeout: 900
   AfterInstall:
-    - location: scripts/after_install.sh
+    - location: scripts/after_install.bat
       timeout: 300
-      runas: root
   ApplicationStart:
-    - location: scripts/start_server.sh
+    - location: scripts/start_server.bat
       timeout: 300
-      runas: root
   ApplicationStop:
-    - location: scripts/stop_server.sh
-      timeout: 300
-      runas: root
+    - location: scripts/stop_server.bat
